@@ -3,7 +3,7 @@ import { useState } from "react";
 import CodeMirror from "@uiw/react-codemirror";
 import JSONtemplate from "@/app/skillsheet/template.json";
 import { SkillSheet, WorkExperience } from "@/type/skillsheet";
-import { convToSkillSheet } from "@/util/skillSheet";
+import { convToSkillSheet } from "@/util/skillsheet";
 import { json } from "@codemirror/lang-json";
 
 export default function SkillSheetPages() {
@@ -30,15 +30,6 @@ export default function SkillSheetPages() {
     if (parsedData) setParsedData(parsedData);
   };
 
-  const copyToClipboard = async (text: string) => {
-    try {
-      await global.navigator.clipboard.writeText(text);
-    } catch (e) {
-      // TODO: エラー表示を整備する
-      alert("クリップボードにコピーできませんでした");
-    }
-  };
-
   const {
     parsonalInfo,
     educationalBackground,
@@ -51,7 +42,18 @@ export default function SkillSheetPages() {
     <div>
       <main className="p-2">
         <h1>スキルシート</h1>
-        <button className="border mb-2" onClick={() => copyToClipboard(data)}>
+        <button
+          className="border mb-2"
+          onClick={() => {
+            // マウント後でないとnavigatorが使えないのでonClick内で実行する
+            try {
+              navigator.clipboard.writeText(data);
+            } catch (e) {
+              // TODO: エラー表示を整備する
+              alert("クリップボードにコピーできませんでした");
+            }
+          }}
+        >
           クリップボードにコピー
         </button>
         <div className="flex">
@@ -123,62 +125,72 @@ export default function SkillSheetPages() {
             </div>
             <div className="mb-2">
               <table className="border w-full">
-                <tr>
-                  <th className="border">学校名</th>
-                  <td className="border">{educationalBackground.schoolName}</td>
-                </tr>
-                <tr>
-                  <th className="border">学部・学科</th>
-                  <td className="border">{educationalBackground.department}</td>
-                </tr>
-                <tr>
-                  <th className="border">卒業年月</th>
-                  <td className="border">
-                    {educationalBackground.graduationDate}
-                  </td>
-                </tr>
-              </table>
-            </div>
-            <div className="mb-2">
-              <table className="border w-full">
-                <tr>
-                  <th className="border">取得年月</th>
-                  <th className="border">資格名</th>
-                </tr>
-                {licence.map((v, k) => (
-                  <tr key={k}>
-                    <td className="border">{v.date}</td>
-                    <td className="border">{v.name}</td>
+                <tbody>
+                  <tr>
+                    <th className="border">学校名</th>
+                    <td className="border">
+                      {educationalBackground.schoolName}
+                    </td>
                   </tr>
-                ))}
+                  <tr>
+                    <th className="border">学部・学科</th>
+                    <td className="border">
+                      {educationalBackground.department}
+                    </td>
+                  </tr>
+                  <tr>
+                    <th className="border">卒業年月</th>
+                    <td className="border">
+                      {educationalBackground.graduationDate}
+                    </td>
+                  </tr>
+                </tbody>
               </table>
             </div>
             <div className="mb-2">
               <table className="border w-full">
-                <tr>
-                  <th className="border">OS</th>
-                  <td className="border">{skill.os}</td>
-                </tr>
-                <tr>
-                  <th className="border">言語</th>
-                  <td className="border">{skill.language}</td>
-                </tr>
-                <tr>
-                  <th className="border">フレームワーク</th>
-                  <td className="border">{skill.framework}</td>
-                </tr>
-                <tr>
-                  <th className="border">データベース</th>
-                  <td className="border">{skill.database}</td>
-                </tr>
-                <tr>
-                  <th className="border">ツール</th>
-                  <td className="border">{skill.tool}</td>
-                </tr>
-                <tr>
-                  <th className="border">その他</th>
-                  <td className="border">{skill.other}</td>
-                </tr>
+                <tbody>
+                  <tr>
+                    <th className="border">取得年月</th>
+                    <th className="border">資格名</th>
+                  </tr>
+                  {licence.map((v, k) => (
+                    <tr key={k}>
+                      <td className="border">{v.date}</td>
+                      <td className="border">{v.name}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <div className="mb-2">
+              <table className="border w-full">
+                <tbody>
+                  <tr>
+                    <th className="border">OS</th>
+                    <td className="border">{skill.os}</td>
+                  </tr>
+                  <tr>
+                    <th className="border">言語</th>
+                    <td className="border">{skill.language}</td>
+                  </tr>
+                  <tr>
+                    <th className="border">フレームワーク</th>
+                    <td className="border">{skill.framework}</td>
+                  </tr>
+                  <tr>
+                    <th className="border">データベース</th>
+                    <td className="border">{skill.database}</td>
+                  </tr>
+                  <tr>
+                    <th className="border">ツール</th>
+                    <td className="border">{skill.tool}</td>
+                  </tr>
+                  <tr>
+                    <th className="border">その他</th>
+                    <td className="border">{skill.other}</td>
+                  </tr>
+                </tbody>
               </table>
             </div>
             <div className="border mb-2">{selfPromotion}</div>

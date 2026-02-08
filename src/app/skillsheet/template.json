@@ -25,7 +25,7 @@
   "スキル": {
     "OS": ["例：", "Windows", "MacOS", "Linux(Ubuntu)"],
     "言語": ["例：", "Java", "TypeScript", "Python"],
-    "フレームワーク": ["例：", "Sping Boot", "Next.js", "React", "FastAPI"],
+    "フレームワーク": ["例：", "Spring Boot", "Next.js", "React", "FastAPI"],
     "データベース": ["例：", "MySQL", "PostgreSQL"],
     "ツール": ["例：", "Git", "Docker"],
     "その他": ["例：", "ClaudeCode"]

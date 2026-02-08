@@ -7,6 +7,11 @@ import {
   WorkExperience,
 } from "@/type/skillsheet";
 
+/**
+ * 入力された文字列をJSONに変換してSkillSheet型で返却する
+ * @param jstr 入力値
+ * @returns SkillSheet
+ */
 export const convToSkillSheet = (jstr: string): SkillSheet => {
   const json = JSON.parse(jstr);
   const parsonalInfo: ParsonalInfo = {
@@ -35,12 +40,12 @@ export const convToSkillSheet = (jstr: string): SkillSheet => {
     },
   );
   const skill: Skill = {
-    os: json.スキル.OS.join(", "),
-    language: json.スキル.言語.join(", "),
-    framework: json.スキル.フレームワーク.join(", "),
-    database: json.スキル.データベース.join(", "),
-    tool: json.スキル.ツール.join(", "),
-    other: json.スキル.その他.join(", "),
+    os: json.スキル.OS,
+    language: json.スキル.言語,
+    framework: json.スキル.フレームワーク,
+    database: json.スキル.データベース,
+    tool: json.スキル.ツール,
+    other: json.スキル.その他,
   };
   const workExperience: WorkExperience[] = json.職歴.map(
     (v: {
