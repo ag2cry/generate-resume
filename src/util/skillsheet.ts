@@ -54,7 +54,7 @@ export const convToSkillSheet = (jstr: string): SkillSheet => {
       業務内容: string;
       規模: string;
       ポジション: string;
-      開発環境: string;
+      '開発環境（言語、フレームワーク、DB、ツール等）': string;
       担当工程: {
         要件定義: string;
         基本設計: string;
@@ -72,7 +72,8 @@ export const convToSkillSheet = (jstr: string): SkillSheet => {
         content: v.業務内容,
         scale: v.規模,
         position: v.ポジション,
-        developmentEnvironment: v.開発環境,
+        developmentEnvironment:
+          v['開発環境（言語、フレームワーク、DB、ツール等）'],
         task: {
           requirementDefinition: v.担当工程.要件定義,
           basicDesign: v.担当工程.基本設計,
