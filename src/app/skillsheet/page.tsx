@@ -7,7 +7,6 @@ import { convToSkillSheet } from "@/util/skillSheet";
 import { json } from "@codemirror/lang-json";
 
 export default function SkillSheetPages() {
-  console.log(JSONtemplate);
   const [data, setData] = useState<string>(
     JSON.stringify(JSONtemplate, null, 2),
   );
@@ -20,7 +19,7 @@ export default function SkillSheetPages() {
       const parsed: SkillSheet = convToSkillSheet(data);
       return parsed;
     } catch (e) {
-      console.log(e);
+      // TODO: エラー表示を整備する
       return null;
     }
   };
@@ -28,12 +27,16 @@ export default function SkillSheetPages() {
   const handleSetData = (data: string) => {
     setData(data);
     const parsedData = parseData(data);
-    console.log({ parsedData });
     if (parsedData) setParsedData(parsedData);
   };
 
   const copyToClipboard = async (text: string) => {
-    await global.navigator.clipboard.writeText(text);
+    try {
+      await global.navigator.clipboard.writeText(text);
+    } catch (e) {
+      // TODO: エラー表示を整備する
+      alert("クリップボードにコピーできませんでした");
+    }
   };
 
   const {
