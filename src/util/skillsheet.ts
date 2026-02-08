@@ -5,7 +5,7 @@ import {
   Skill,
   SkillSheet,
   WorkExperience,
-} from "@/type/skillsheet";
+} from '@/type/skillsheet';
 
 /**
  * 入力された文字列をJSONに変換してSkillSheet型で返却する
@@ -28,7 +28,7 @@ export const convToSkillSheet = (jstr: string): SkillSheet => {
   };
   const educationalBackground: EducationalBackground = {
     schoolName: json.最終学歴.学校名,
-    department: json.最終学歴["学部・学科"],
+    department: json.最終学歴['学部・学科'],
     graduationDate: json.最終学歴.卒業年月,
   };
   const licence: Licence[] = json.資格.map(
@@ -63,7 +63,7 @@ export const convToSkillSheet = (jstr: string): SkillSheet => {
         単体テスト: string;
         結合テスト: string;
         総合テスト: string;
-        "運用・保守": string;
+        '運用・保守': string;
       };
     }) => {
       return {
@@ -73,7 +73,16 @@ export const convToSkillSheet = (jstr: string): SkillSheet => {
         scale: v.規模,
         position: v.ポジション,
         developmentEnvironment: v.開発環境,
-        task: v.担当工程,
+        task: {
+          requirementDefinition: v.担当工程.要件定義,
+          basicDesign: v.担当工程.基本設計,
+          detailedDesign: v.担当工程.詳細設計,
+          implementation: v.担当工程.実装,
+          unitTest: v.担当工程.単体テスト,
+          integrationTest: v.担当工程.結合テスト,
+          systemTest: v.担当工程.総合テスト,
+          operationAndMaintenance: v.担当工程['運用・保守'],
+        },
       };
     },
   );

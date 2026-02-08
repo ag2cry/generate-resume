@@ -1,10 +1,12 @@
-"use client";
-import { useState } from "react";
-import CodeMirror from "@uiw/react-codemirror";
-import JSONtemplate from "@/app/skillsheet/template.json";
-import { SkillSheet, WorkExperience } from "@/type/skillsheet";
-import { convToSkillSheet } from "@/util/skillsheet";
-import { json } from "@codemirror/lang-json";
+'use client';
+import { json } from '@codemirror/lang-json';
+import CodeMirror from '@uiw/react-codemirror';
+
+import { useState } from 'react';
+
+import JSONtemplate from '@/app/skillsheet/template.json';
+import { SkillSheet, WorkExperience } from '@/type/skillsheet';
+import { convToSkillSheet } from '@/util/skillsheet';
 
 export default function SkillSheetPages() {
   const [data, setData] = useState<string>(
@@ -50,7 +52,7 @@ export default function SkillSheetPages() {
               navigator.clipboard.writeText(data);
             } catch (e) {
               // TODO: エラー表示を整備する
-              alert("クリップボードにコピーできませんでした");
+              alert('クリップボードにコピーできませんでした');
             }
           }}
         >
@@ -168,27 +170,27 @@ export default function SkillSheetPages() {
                 <tbody>
                   <tr>
                     <th className="border">OS</th>
-                    <td className="border">{skill.os}</td>
+                    <td className="border">{skill.os.join(', ')}</td>
                   </tr>
                   <tr>
                     <th className="border">言語</th>
-                    <td className="border">{skill.language}</td>
+                    <td className="border">{skill.language.join(', ')}</td>
                   </tr>
                   <tr>
                     <th className="border">フレームワーク</th>
-                    <td className="border">{skill.framework}</td>
+                    <td className="border">{skill.framework.join(', ')}</td>
                   </tr>
                   <tr>
                     <th className="border">データベース</th>
-                    <td className="border">{skill.database}</td>
+                    <td className="border">{skill.database.join(', ')}</td>
                   </tr>
                   <tr>
                     <th className="border">ツール</th>
-                    <td className="border">{skill.tool}</td>
+                    <td className="border">{skill.tool.join(', ')}</td>
                   </tr>
                   <tr>
                     <th className="border">その他</th>
-                    <td className="border">{skill.other}</td>
+                    <td className="border">{skill.other.join(', ')}</td>
                   </tr>
                 </tbody>
               </table>
@@ -240,7 +242,7 @@ export default function SkillSheetPages() {
                       <td className="border">{v.developmentEnvironment}</td>
                       {Object.values(v.task).map((v, k) => (
                         <td className="border" key={k}>
-                          {v ? "〇" : ""}
+                          {v ? '〇' : ''}
                         </td>
                       ))}
                     </tr>
