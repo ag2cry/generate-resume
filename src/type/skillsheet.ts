@@ -15,7 +15,6 @@ export type Address = {
 
 export type EducationalBackground = {
   schoolName: string;
-  department: string;
   graduationDate: string;
 };
 
@@ -33,7 +32,7 @@ export type Skill = {
   other: string[];
 };
 
-type TrueOrFalse = "" | "〇";
+type TrueOrFalse = '' | '〇';
 export type Task = {
   requirementsDefinition: TrueOrFalse;
   basicDesign: TrueOrFalse;

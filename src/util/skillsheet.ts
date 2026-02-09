@@ -28,7 +28,6 @@ export const convToSkillSheet = (jstr: string): SkillSheet => {
   };
   const educationalBackground: EducationalBackground = {
     schoolName: json.最終学歴.学校名,
-    department: json.最終学歴['学部・学科'],
     graduationDate: json.最終学歴.卒業年月,
   };
   const licence: Licence[] = json.資格.map(

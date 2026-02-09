@@ -63,6 +63,7 @@ export default function SkillSheetPages() {
             <CodeMirror
               className="border"
               value={data}
+              width="30vw"
               height="100vh"
               onChange={(data) => {
                 handleSetData(data);
@@ -129,21 +130,15 @@ export default function SkillSheetPages() {
               <table className="border w-full">
                 <tbody>
                   <tr>
-                    <th className="border">学校名</th>
-                    <td className="border">
-                      {educationalBackground.schoolName}
-                    </td>
-                  </tr>
-                  <tr>
-                    <th className="border">学部・学科</th>
-                    <td className="border">
-                      {educationalBackground.department}
-                    </td>
-                  </tr>
-                  <tr>
                     <th className="border">卒業年月</th>
+                    <th className="border">学校名</th>
+                  </tr>
+                  <tr>
                     <td className="border">
                       {educationalBackground.graduationDate}
+                    </td>
+                    <td className="border">
+                      {educationalBackground.schoolName}
                     </td>
                   </tr>
                 </tbody>
